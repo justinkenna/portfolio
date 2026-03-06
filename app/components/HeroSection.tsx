@@ -127,12 +127,12 @@ export default function HeroSection() {
 
       {/* Hero text */}
       <div className="absolute bottom-20 w-full flex flex-col items-center text-center px-6">
-        <h1 className="text-[clamp(5rem,20vw,12rem)] font-extrabold leading-none tracking-tight text-white">
-          Justin
+        <h1 className="text-[clamp(4rem,15vw,9rem)] font-extrabold leading-none tracking-tight text-white">
+          Justin Kenna
         </h1>
         <p className="mt-4 text-lg text-white/80 tracking-wide">
-          UX design&nbsp;•&nbsp;Research&nbsp;•&nbsp;Problem Solver
-        </p>
+            Product designer focused on AI, search, and monetization systems.
+          </p>
         <a
           href="#work"
           className="mt-6 inline-block bg-[#fe6500] hover:bg-[#e05a00] transition-colors text-white font-medium px-7 py-3 rounded-full"

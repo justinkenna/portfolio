@@ -1,5 +1,6 @@
 import HeroSection from "./components/HeroSection";
 import ParallaxShapes from "./components/ParallaxShapes";
+import WorkCarousel from "./components/WorkCarousel";
 import ContactSection from "./components/ContactSection";
 
 export default function Home() {
@@ -31,6 +32,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* ── Selected Work ── */}
+      <WorkCarousel />
 
       {/* ── Contact ── */}
       <ContactSection />
