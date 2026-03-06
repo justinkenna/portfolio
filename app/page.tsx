@@ -1,6 +1,7 @@
 import HeroSection from "./components/HeroSection";
 import ParallaxShapes from "./components/ParallaxShapes";
 import WorkCarousel from "./components/WorkCarousel";
+import PortfolioAgent from "./components/PortfolioAgent";
 import ContactSection from "./components/ContactSection";
 
 export default function Home() {
@@ -35,6 +36,9 @@ export default function Home() {
 
       {/* ── Selected Work ── */}
       <WorkCarousel />
+
+      {/* ── Portfolio Agent ── */}
+      <PortfolioAgent />
 
       {/* ── Contact ── */}
       <ContactSection />

@@ -127,7 +127,7 @@ export default function HeroSection() {
 
       {/* Hero text */}
       <div className="absolute bottom-20 w-full flex flex-col items-center text-center px-6">
-        <h1 className="text-[clamp(4rem,15vw,9rem)] font-extrabold leading-none tracking-tight text-white">
+        <h1 className="text-[clamp(4rem,15vw,9rem)] font-extrabold leading-none tracking-wide text-[#f6ece1]">
           Justin Kenna
         </h1>
         <p className="mt-4 text-lg text-white/80 tracking-wide">
@@ -135,9 +135,14 @@ export default function HeroSection() {
           </p>
         <a
           href="#work"
-          className="mt-6 inline-block bg-[#fe6500] hover:bg-[#e05a00] transition-colors text-white font-medium px-7 py-3 rounded-full"
+          className="mt-8 inline-flex items-center gap-3 bg-[#fe6500] hover:bg-[#e05a00] transition-colors text-white font-extrabold pl-6 pr-2 py-2 rounded-full"
         >
           View Work
+          <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white text-[#fe6500]">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
         </a>
       </div>
     </section>
