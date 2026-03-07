@@ -39,13 +39,17 @@ export default function PortfolioAgent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: trimmed }),
       });
-      const data: AgentResponse = await res.json();
+      const data = await res.json();
+      if (!res.ok || !data.answer) {
+        throw new Error(data.error ?? "Empty response");
+      }
+      const typed = data as AgentResponse;
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: data.answer,
-          suggestions: data.suggestions ?? [],
+          content: typed.answer,
+          suggestions: typed.suggestions ?? [],
         },
       ]);
     } catch {
