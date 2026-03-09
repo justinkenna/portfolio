@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
+import CaseStudyModal from "./CaseStudyModal";
+import { CASE_STUDIES } from "@/lib/case-studies";
 
 const CARDS = [
   {
@@ -75,6 +77,19 @@ export default function WorkCarousel() {
   const activeRef = useRef(0);
   const isProgrammaticScroll = useRef(false);
 
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openStudy = (id: number) => {
+    setSelectedId(id);
+    requestAnimationFrame(() => setIsModalOpen(true));
+  };
+
+  const closeStudy = useCallback(() => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedId(null), 420);
+  }, []);
+
   const scrollTo = (index: number) => {
     if (!trackRef.current) return;
     const track = trackRef.current;
@@ -108,7 +123,7 @@ export default function WorkCarousel() {
   const prev = () => scrollTo(Math.max(0, activeRef.current - 3));
   const next = () => scrollTo(Math.min(CARDS.length - 3, activeRef.current + 3));
 
-  return (
+  return (<>
     <section className="bg-black py-12 px-8 md:px-16" id="work">
       <div className="max-w-5xl mx-auto">
 
@@ -141,18 +156,25 @@ export default function WorkCarousel() {
                 className="snap-start flex-shrink-0 w-[72vw] max-w-[320px] flex flex-col gap-3"
               >
                 {/* 3:4 image card */}
-                <div
-                  className="relative w-full overflow-hidden"
+                <button
+                  onClick={() => openStudy(card.id)}
+                  aria-label={`Open case study: ${card.label}`}
+                  className="relative w-full overflow-hidden group cursor-pointer focus:outline-none"
                   style={{ aspectRatio: "3 / 4", borderRadius: "28px" }}
                 >
                   <Image
                     src={card.src}
                     alt={card.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="320px"
                   />
-                </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-bold tracking-widest uppercase text-white bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full">
+                      View Case Study
+                    </span>
+                  </div>
+                </button>
                 <p className="text-sm font-medium text-white/70 pl-1">{card.label}</p>
               </div>
             ))}
@@ -185,5 +207,14 @@ export default function WorkCarousel() {
 
       </div>
     </section>
-  );
+
+    {/* Case study overlay */}
+    {selectedId !== null && CASE_STUDIES[selectedId] && (
+      <CaseStudyModal
+        study={CASE_STUDIES[selectedId]}
+        isOpen={isModalOpen}
+        onClose={closeStudy}
+      />
+    )}
+  </>);
 }

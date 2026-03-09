@@ -14,7 +14,7 @@ export default function Home() {
       <HeroSection />
 
       {/* ── About ── */}
-      <section className="bg-black px-8 pt-24 pb-0 md:px-16">
+      <section id="about" className="bg-black px-8 pt-24 pb-0 md:px-16">
         <div className="max-w-5xl md:mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
